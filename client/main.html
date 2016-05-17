@@ -1,0 +1,66 @@
+<head>
+  <title>simple</title>
+</head>
+
+<body>
+  
+  <div class="container">
+    {{> aggregate}}
+  </div>
+  
+
+</body>
+
+
+
+<template name='aggregate'> 
+  <h4 class="page-header">Revenue Stata</h4>
+  <div class="row">
+    <div class="col-xs-6">
+      <select data-filter class="form-control" name="artist">
+        <option value="all">All Artists</option>
+        {{#each artists}}
+          <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="col-xs-6">
+      <select data-filter class="form-control" name="album">
+        <option value="All">All Albums</option>
+        {{#each albums currentArtist}}
+          <option value="{{this}}">{{this}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="panel panel-default" style="margin-top:40px">
+        <div class="panel-heading">Total Revenue</div>
+        <div class="panel-body">
+          <h1 style="margin: 0">{{totalRevenue}}</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Artist</th>
+        <th>Album</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each revenueItems}}
+      <tr>
+        <td>{{item.artist}}</td>
+        <td>{{item.album}}</td>
+        <td>{{total}}</td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</template>
